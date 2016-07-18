@@ -10,6 +10,7 @@ using ADMS.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using ADMS.Controllers;
+using System.Configuration;
 
 namespace ADMS.App_Start
 {
@@ -42,28 +43,21 @@ namespace ADMS.App_Start
         public static void RegisterTypes(IUnityContainer container)
         {
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
-            // container.LoadConfiguration();
+            var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");            
+            container.LoadConfiguration(section);
 
             // TODO: Register your types here
-            container.RegisterType<IUnitOfWork, UnitOfWork>();
-            container.RegisterType<IPostManager, PostManager>();
-            container.RegisterType<ICategoryManager, CategoryManager>();
-            container.RegisterType<ICategoryMappingManager, CategoryMappingManager>();
+            //container.RegisterType<IUnitOfWork, UnitOfWork>();
+            //container.RegisterType<IPostManager, PostManager>();
+            //container.RegisterType<ICategoryManager, CategoryManager>();
+            //container.RegisterType<ICategoryMappingManager, CategoryMappingManager>();
 
             container.RegisterType<IUserManager, UserManager>();
             container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
             container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
-            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());           
 
-            container.RegisterType<DbContext, ApplicationDbContext>(
-                                        new HierarchicalLifetimeManager());
-            container.RegisterType<UserManager<ApplicationUser>>(
-                new HierarchicalLifetimeManager());
-            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(
-                new HierarchicalLifetimeManager());
-
-            container.RegisterType<AccountController>(
-                new InjectionConstructor());
+            container.RegisterType<AccountController>(new InjectionConstructor());
         }
     }
 }
