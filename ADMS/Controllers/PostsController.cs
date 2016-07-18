@@ -16,11 +16,6 @@ namespace ADMS.Controllers
 
         private IPostManager _postManager;
 
-        public PostsController()
-        {
-            _postManager = new PostManager();
-        }
-
         public PostsController(IPostManager postManager)
         {
             _postManager = postManager;

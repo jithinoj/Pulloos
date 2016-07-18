@@ -10,11 +10,6 @@ namespace ADMS.Business
     {
         IUnitOfWork _unitOfWork;
 
-        public UserManager()
-        {
-            _unitOfWork = new UnitOfWork();
-        }
-
         public UserManager(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

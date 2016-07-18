@@ -9,12 +9,7 @@ namespace ADMS.Business
     public class CategoryMappingManager : ICategoryMappingManager
     {
         private IUnitOfWork _unitOfWork;
-
-        public CategoryMappingManager()
-        {
-            _unitOfWork = new UnitOfWork();
-        }
-
+        
         public CategoryMappingManager(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

@@ -12,12 +12,7 @@ namespace ADMS.Business
 {
     public class CategoryManager : ICategoryManager
     {
-        private IUnitOfWork _unitOfWork;
-
-        public CategoryManager()
-        {
-            _unitOfWork = new UnitOfWork();
-        }
+        private IUnitOfWork _unitOfWork;        
 
         public CategoryManager(IUnitOfWork unitOfWork)
         {

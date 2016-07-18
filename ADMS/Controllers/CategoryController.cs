@@ -14,13 +14,7 @@ namespace ADMS.Controllers
     {
         ICategoryManager _categoryManager;
         ICategoryMappingManager _categoryMappingManager;
-
-        public CategoryController()
-        {
-            _categoryManager = new CategoryManager();
-            _categoryMappingManager = new CategoryMappingManager();
-        }
-
+        
         public CategoryController(ICategoryManager categoryManager, ICategoryMappingManager categoryMappingManager)
         {
             _categoryManager = categoryManager;

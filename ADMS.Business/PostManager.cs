@@ -11,11 +11,6 @@ namespace ADMS.Business
     {
        private IUnitOfWork _unitOfWork;
 
-        public PostManager()
-        {
-            _unitOfWork = new UnitOfWork();
-        }
-
         public PostManager(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
