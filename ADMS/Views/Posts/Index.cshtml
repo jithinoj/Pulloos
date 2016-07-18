@@ -1,0 +1,44 @@
+﻿@model ADMS.ViewModel.PostListViewModel
+@{
+    ViewBag.Title = "Posts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Posts</h2>
+
+@Html.ActionLink("+", "Create", "Posts", new { @class = "btn-floating", style = "text-align:center;height:100px; width:100px;font-size:35px;padding-top:32px;text-decoration:none;" })
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div style="width:100%">
+                @foreach (var post in Model.Posts)
+            {
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-title"> @post.Title</div>
+                            <div class="teal-text"> @post.Description</div>
+                            <div class="right-align">
+                                <div> Posted on : @post.PostedAt</div>
+                                <div> Posted by : @post.UserName</div>
+                                <div> Expire at : @post.ExpirationDate</div>
+
+                                @if (Model.CurrentUser.ToString() == post.PostedBy)
+                                {
+                                    @Html.ActionLink("Edit", "Edit", new { id = post.PostId }, new { @class = "btn-link" })
+                                        <span>|</span>
+                                    @Html.ActionLink("Delete", "Delete", new { id = post.PostId }, new { @class = "btn-link" })
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Home", "Index", "Home", new { @class = "btn btn-default" })
+</p>
