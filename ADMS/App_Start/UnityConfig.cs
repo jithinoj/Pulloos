@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using ADMS.Controllers;
 using System.Configuration;
+using Microsoft.Owin.Security;
+using System.Web;
 
 namespace ADMS.App_Start
 {
@@ -39,18 +41,16 @@ namespace ADMS.App_Start
         public static void RegisterTypes(IUnityContainer container)
         {
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
-            var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");            
-            container.LoadConfiguration(section);
+            var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+            container.LoadConfiguration(section);            
 
-            // TODO: Register your types here
-            //container.RegisterType<IUnitOfWork, UnitOfWork>();
-            //container.RegisterType<IPostManager, PostManager>();
-            //container.RegisterType<ICategoryManager, CategoryManager>();
-            //container.RegisterType<ICategoryMappingManager, CategoryMappingManager>();
-            
             container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
             container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
-            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());           
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAuthenticationManager>(
+                                        new InjectionFactory(
+                                            o => HttpContext.Current.GetOwinContext().Authentication
+                                        ));
 
             container.RegisterType<AccountController>(new InjectionConstructor());
         }

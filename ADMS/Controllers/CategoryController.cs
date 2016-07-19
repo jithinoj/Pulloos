@@ -1,9 +1,7 @@
-﻿using ADMS.Common;
-using ADMS.Domain.Entities;
+﻿using ADMS.Domain.Entities;
 using ADMS.Domain.Interfaces.Managers;
 using ADMS.ViewModel;
 using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace ADMS.Controllers
