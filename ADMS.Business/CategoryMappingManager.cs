@@ -2,7 +2,6 @@
 using ADMS.Domain.Entities;
 using ADMS.Domain.Interfaces.Managers;
 using ADMS.Domain.Interfaces;
-using ADMS.Data;
 
 namespace ADMS.Business
 {

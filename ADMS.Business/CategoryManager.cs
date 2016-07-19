@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ADMS.Domain.Entities;
 using ADMS.Domain.Interfaces;
-using ADMS.Data;
 
 namespace ADMS.Business
 {

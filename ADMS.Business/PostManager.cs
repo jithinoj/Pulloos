@@ -1,5 +1,4 @@
-﻿using ADMS.Data;
-using ADMS.Domain.Entities;
+﻿using ADMS.Domain.Entities;
 using ADMS.Domain.Interfaces;
 using ADMS.Domain.Interfaces.Managers;
 using System;

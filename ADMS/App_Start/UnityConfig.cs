@@ -1,10 +1,6 @@
 using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
-using ADMS.Domain.Interfaces;
-using ADMS.Data;
-using ADMS.Domain.Interfaces.Managers;
-using ADMS.Business;
 using Microsoft.AspNet.Identity;
 using ADMS.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -51,8 +47,7 @@ namespace ADMS.App_Start
             //container.RegisterType<IPostManager, PostManager>();
             //container.RegisterType<ICategoryManager, CategoryManager>();
             //container.RegisterType<ICategoryMappingManager, CategoryMappingManager>();
-
-            container.RegisterType<IUserManager, UserManager>();
+            
             container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
             container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
             container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());           
