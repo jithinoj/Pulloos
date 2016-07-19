@@ -314,6 +314,7 @@
     <Content Include="Content\materialize\font\roboto\Roboto-Thin.ttf" />
     <Content Include="Content\materialize\font\roboto\Roboto-Thin.woff" />
     <Content Include="Content\materialize\font\roboto\Roboto-Thin.woff2" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
