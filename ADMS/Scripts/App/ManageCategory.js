@@ -4,8 +4,12 @@
     var selectedCategory;
 
     $(function () {
-        $("#ParentCategory").change(CategoryChanged);
+        $("#toggler").change(CategoryChanged);
         $('#btnCreate').click(SaveData);
+
+
+        $('.toggler').click(GetSubcategories);
+
     });
 
     function BindEventHandlers() {
@@ -18,6 +22,16 @@
             .click(ExpandCategory);
     }
 
+
+    var GetSubcategories = function (event) {
+
+        var categoryId = $(event.target.parentElement).find('.row_selector')[0].id;
+        GetSubcategoriesByCategory(categoryId)
+                    .then(function (categories) {
+
+                        DisplaySubCategories(categories, categoryId);
+                    });
+    };
 
 
     var CategoryChanged = function (event) {
@@ -99,22 +113,34 @@
 
     function DisplaySubCategories(categories, categoryId) {
 
+        var toggler = $('#' + categoryId);
+        var container = toggler.parent().find('div');
+
+
         var list = $('#' + categoryId);
         var totalCount = categories.length;
 
         if (totalCount > 0) {
 
             var ul = document.createElement('ul');
+            ul.className = "subcategory";
 
             for (var i = 0; i < totalCount; i++) {
 
                 var category = categories[i];
 
-                $(ul).append('<li class="list-group-item" id="' + category["CategoryId"] + '" ><span class="btn-flat" >+</span>' + category["CategoryName"] + '</li>');
-            }
-            list.find('span').html('-');
+                var content = '<li><span class="toggler">+</span>'
+                + '<span class="category_name">' + category["CategoryName"] + '</span>'
+                + '<span class="row_selector" id="' + category["CategoryId"] + '">Select</span>'
+                + '<div class="innercategories"></div></li>';               
 
-            list.append(ul).hide()
+
+                $(ul).append(content);
+            }
+
+            toggler.parent().find('span:eq(0)').html('-');
+
+            container.append(ul).hide()
                             .slideDown('medium');
 
             BindEventHandlers();

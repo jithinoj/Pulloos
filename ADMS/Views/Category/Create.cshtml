@@ -28,14 +28,19 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ParentCategory, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <select id="ParentCategory" name="ParentCategory" class="form-control">
-                <option value="">Select a parent category</option>
+            <ul class="subcategory">
 
                 @foreach (var item in Model.Categories)
                 {
-                    <option value="@item.CategoryId">@item.CategoryName</option>
+                    <li class="sub_categories">
+                        <span class="toggler">+</span>
+                        <span class="category_name">@item.CategoryName</span>
+                        <span class="row_selector" id="@item.CategoryId">Select</span>
+                        <div class="innercategories"></div>
+                    </li>                    
                 }
-            </select>
+
+            </ul>
         </div>
     </div>
     <div class="form-group">
@@ -43,14 +48,67 @@
             <ul class="list-group" id="SubCategories"></ul>
         </div>
     </div>
+
+
+    @*<div class="form-group" style="height:auto;">
+        <div class="col-md-offset-2 col-md-6">
+            <ul class="subcategory">
+                <li class="sub_categories">
+                    <span class="toggler">+</span>
+                    <span class="category_name">Identity</span>
+                    <span class="row_selector">Select</span>
+                    <div class="innercategories">
+                        <ul class="subcategory">
+                            <li>
+                                <span class="toggler">+</span>
+                                <span class="category_name">Identity</span>
+                                <span class="row_selector">Select</span>
+                                <div class="innercategories">
+                                    <ul class="subcategory">
+                                        <li>
+                                            <span class="toggler">+</span>
+                                            <span class="category_name">Identity</span>
+                                            <span class="row_selector">Select</span>
+                                            <div class="innercategories">
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>*@
+
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="button" id="btnCreate" value="Create" class="btn btn-default" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
         </div>
     </div>
 </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+
 <script src="~/Scripts/App/ManageCategory.js"></script>
+
+<style type="text/css">
+    .innercategories {
+        padding-left: 20px;
+    }
+
+    .row_selector {
+        float: right;
+    }
+
+    .subcategory li {
+        line-height: 35px;
+    }
+</style>
