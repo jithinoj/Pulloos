@@ -327,6 +327,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\App\CreateCategory.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -366,6 +367,7 @@
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="unity.config" />
+    <Content Include="Views\Shared\_CategorySelector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

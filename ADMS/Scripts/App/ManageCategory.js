@@ -1,43 +1,59 @@
 ﻿
 (function () {
 
-    var selectedCategory;
-
     $(function () {
-        $("#toggler").change(CategoryChanged);
-        $('#btnCreate').click(SaveData);
 
+        $("#toggler").change(CategoryChanged);
 
         $('.toggler').click(GetSubcategories);
+
+        BindEventHandlers();
 
     });
 
     function BindEventHandlers() {
-        $('.list-group-item')
+        $('.toggler')
+            .unbind('click')
+            .click(GetSubcategories);
+
+        $('.row_selector')
             .unbind('click')
             .click(CategorySelected);
-
-        $('.list-group-item .btn-flat')
-            .unbind('click')
-            .click(ExpandCategory);
     }
 
 
     var GetSubcategories = function (event) {
 
+        var toggler = $(event.target);
+
         var categoryId = $(event.target.parentElement).find('.row_selector')[0].id;
-        GetSubcategoriesByCategory(categoryId)
-                    .then(function (categories) {
 
-                        DisplaySubCategories(categories, categoryId);
-                    });
+        if (toggler.hasClass('glyphicon-circle-arrow-down')) {
+
+            var categoryId = $(event.target.parentElement).find('.row_selector')[0].id;
+
+            GetSubcategoriesByCategory(categoryId)
+                        .then(function (categories) {
+
+                            DisplaySubCategories(categories, categoryId);
+                        });
+        }
+        else {
+
+            toggler.addClass('glyphicon-circle-arrow-down');
+
+            $(event.target.parentElement).find('div.innercategories:first')
+                .slideUp('medium', function () {
+
+                $(event.target.parentElement).find('div.innercategories:first').html('');
+            });
+        }
     };
-
-
+    
     var CategoryChanged = function (event) {
 
         var categoryId = $(event.target).val();
-        selectedCategory = categoryId;
+        $('#SelectedCategory').val(categoryId);
 
         GetSubcategoriesByCategory(categoryId)
                     .done(function (categories) {
@@ -48,33 +64,11 @@
 
     var CategorySelected = function (event) {
 
-        selectedCategory = event.target.id;
-        $('.selected').removeClass('selected');
-        $('#' + selectedCategory).addClass('selected');
-    };
+        $('#SelectedCategory').val(event.target.id);
 
-    var ExpandCategory = function (event) {
-
-        event.stopPropagation();
-        var categoryId = event.target.parentElement.id;
-
-        if (event.target.innerHTML == "+") {
-            
-            GetSubcategoriesByCategory(categoryId)
-                    .done(function (categories) {
-
-                        DisplaySubCategories(categories, categoryId);
-                    });
-        }
-        else {
-
-            event.target.innerHTML = '+';
-
-            $('#' + categoryId).find('ul').slideUp('medium', function () {
-                $('#' + categoryId).find('ul').remove();
-            });
-        }
-    };
+        $('.row_selector').removeClass('glyphicon-check').addClass('glyphicon-unchecked');
+        $('#' + event.target.id).removeClass('glyphicon-unchecked').addClass('glyphicon-check');
+    };   
 
 
 
@@ -89,27 +83,7 @@
         .fail(function (err) {
             console.log(err);
         });
-    }
-
-    function DisplayCategories(categories) {
-        var list = $('#SubCategories');
-        var totalCount = categories.length;
-
-        if (totalCount > 0) {
-            for (var i = 0; i < totalCount; i++) {
-
-                var category = categories[i];
-
-                list.append('<li class="list-group-item" id="' + category["CategoryId"] + '" ><span class="btn-flat" >+</span>' + category["CategoryName"] + '</li>')
-                                        .hide().slideDown('medium');
-            }
-
-            BindEventHandlers();
-        }
-        else {
-            list.html('');
-        }
-    }
+    }   
 
     function DisplaySubCategories(categories, categoryId) {
 
@@ -129,16 +103,16 @@
 
                 var category = categories[i];
 
-                var content = '<li><span class="toggler">+</span>'
+                var content = '<li><span class="toggler glyphicon glyphicon-circle-arrow-down"></span>'
                 + '<span class="category_name">' + category["CategoryName"] + '</span>'
-                + '<span class="row_selector" id="' + category["CategoryId"] + '">Select</span>'
+                + '<span class="row_selector glyphicon glyphicon-unchecked" id="' + category["CategoryId"] + '"></span>'
                 + '<div class="innercategories"></div></li>';               
 
 
                 $(ul).append(content);
             }
 
-            toggler.parent().find('span:eq(0)').html('-');
+            toggler.parent().find('span:eq(0)').removeClass('glyphicon-circle-arrow-down').addClass('glyphicon-circle-arrow-up');
 
             container.append(ul).hide()
                             .slideDown('medium');
@@ -146,38 +120,7 @@
             BindEventHandlers();
         }
     }
-
-
-    function SaveData() {
-
-        var CategoryId = $('#CategoryId').val();
-        var CategoryName = $('#CategoryName').val();
-        var ParentCategory = selectedCategory;
-
-        var categoryDetail = {
-
-            CategoryId: CategoryId,
-            CategoryName: CategoryName,
-            ParentCategory: ParentCategory
-        };
-
-        return $.ajax({
-                url: '/Category/Create',
-                type: "POST",
-                data: JSON.stringify(categoryDetail),
-                contentType: 'application/json',
-                dataType: 'json'
-            })
-            .done(function () {
-
-                window.location.href = "/";
-            })
-            .fail(function (err) {
-
-                console.log(err);
-            });
-
-    }
+    
 
 })();
 

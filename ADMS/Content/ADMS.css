@@ -1,3 +1,19 @@
-﻿.selected{
-    background-color:lightgrey;
+﻿.selected {
+    background-color: lightgrey;
+}
+
+.innercategories {
+    padding-left: 20px;
+}
+
+.row_selector {
+    float: right;
+}
+
+.subcategory li {
+    line-height: 35px;
+}
+
+.category_name {
+    padding-left: 2px;
 }

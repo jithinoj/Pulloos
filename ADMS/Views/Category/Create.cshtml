@@ -33,9 +33,9 @@
                 @foreach (var item in Model.Categories)
                 {
                     <li class="sub_categories">
-                        <span class="toggler">+</span>
+                        <span class="toggler glyphicon glyphicon-circle-arrow-down"></span>
                         <span class="category_name">@item.CategoryName</span>
-                        <span class="row_selector" id="@item.CategoryId">Select</span>
+                        <span class="row_selector glyphicon glyphicon-unchecked" id="@item.CategoryId"></span>
                         <div class="innercategories"></div>
                     </li>                    
                 }
@@ -43,48 +43,9 @@
             </ul>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-3">
-            <ul class="list-group" id="SubCategories"></ul>
-        </div>
-    </div>
 
-
-    @*<div class="form-group" style="height:auto;">
-        <div class="col-md-offset-2 col-md-6">
-            <ul class="subcategory">
-                <li class="sub_categories">
-                    <span class="toggler">+</span>
-                    <span class="category_name">Identity</span>
-                    <span class="row_selector">Select</span>
-                    <div class="innercategories">
-                        <ul class="subcategory">
-                            <li>
-                                <span class="toggler">+</span>
-                                <span class="category_name">Identity</span>
-                                <span class="row_selector">Select</span>
-                                <div class="innercategories">
-                                    <ul class="subcategory">
-                                        <li>
-                                            <span class="toggler">+</span>
-                                            <span class="category_name">Identity</span>
-                                            <span class="row_selector">Select</span>
-                                            <div class="innercategories">
-
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-
-            </ul>
-        </div>
-    </div>*@
-
+    @Html.Partial("_CategorySelector");
+   
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -94,21 +55,4 @@
     </div>
 </div>
 
-
-
-
-<script src="~/Scripts/App/ManageCategory.js"></script>
-
-<style type="text/css">
-    .innercategories {
-        padding-left: 20px;
-    }
-
-    .row_selector {
-        float: right;
-    }
-
-    .subcategory li {
-        line-height: 35px;
-    }
-</style>
+<script src="~/Scripts/App/CreateCategory.js"></script>
