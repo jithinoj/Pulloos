@@ -1,8 +1,10 @@
-﻿using ADMS.Domain.Entities;
+﻿using ADMS.Common;
+using ADMS.Domain.Entities;
 using ADMS.Domain.Interfaces.Managers;
 using ADMS.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ADMS.Controllers
@@ -12,32 +14,35 @@ namespace ADMS.Controllers
     {
 
         private IPostManager _postManager;
+        private ICategoryManager _categoryManager;
 
-        public PostsController(IPostManager postManager)
+        public PostsController(IPostManager postManager, ICategoryManager categoryManager)
         {
             _postManager = postManager;
+            _categoryManager = categoryManager;
         }
 
         // GET: Posts
         public ActionResult Index()
         {
 
-            var results = _postManager.GetAll();
+            var results = _postManager.GetAll()
+                                      .OrderByDescending(x=>x.PostedAt);
 
             List<PostViewModel> posts = new List<PostViewModel>();
 
             foreach (var item in results)
             {
                 posts.Add(new PostViewModel
-                                    {
-                                        PostId = item.PostId,
-                                        Title = item.Title,
-                                        Description = item.Description,
-                                        ExpirationDate = item.ExpirationDate,
-                                        PostedAt = item.PostedAt,
-                                        PostedBy = item.PostedBy,
-                                        UserName = item.AspNetUsers.FirstName + " " + item.AspNetUsers.LastName
-                                    });
+                {
+                    PostId = item.PostId,
+                    Title = item.Title,
+                    Description = item.Description,
+                    ExpirationDate = item.ExpirationDate,
+                    PostedAt = item.PostedAt,
+                    PostedBy = item.PostedBy,
+                    UserName = item.AspNetUsers.FirstName + " " + item.AspNetUsers.LastName
+                });
             }
 
             PostListViewModel postListmodel = new PostListViewModel();
@@ -50,8 +55,11 @@ namespace ADMS.Controllers
         // GET: Create Post
         public ActionResult Create()
         {
+            var postViewModel = new PostViewModel();
 
-            return View(new PostViewModel());
+            postViewModel.Categories = _categoryManager.GetAllParentCategories();
+
+            return View(postViewModel);
         }
 
         // Post: Create Post
@@ -64,21 +72,24 @@ namespace ADMS.Controllers
                 var user = GetUserFromUserName(User.Identity.Name).Id;
 
                 var entity = new Post
-                                {
-                                    PostId = Guid.NewGuid(),
-                                    Title = post.Title,
-                                    Description = post.Description,
-                                    ExpirationDate = post.ExpirationDate,
-                                    PostedAt = DateTime.Now,
-                                    PostedBy = user
-                                };
+                {
+                    PostId = Guid.NewGuid(),
+                    Title = post.Title,
+                    Description = post.Description,
+                    ExpirationDate = post.ExpirationDate,
+                    PostedAt = DateTime.Now,
+                    PostedBy = user,
+                    CategoryId = post.CategoryId
+                };
 
-                _postManager.SavePost(entity);               
-
-                return RedirectToAction("Index");
+                _postManager.SavePost(entity);
             }
 
-            return View(post);
+            post.Categories = _categoryManager.GetAllParentCategories();
+
+            return JsonResultHelper.CreateJsonResult(new List<KeyValuePair<string, string>>() {
+                new KeyValuePair<string, string> ("Result","OK")
+            });
         }
 
         // GET: Edit Post
@@ -86,12 +97,12 @@ namespace ADMS.Controllers
         {
             var entity = _postManager.GetByID(id);
             var post = new PostViewModel
-                                    {
-                                        PostId = entity.PostId,
-                                        Title = entity.Title,
-                                        Description = entity.Description,
-                                        ExpirationDate = entity.ExpirationDate                                        
-                                    };
+            {
+                PostId = entity.PostId,
+                Title = entity.Title,
+                Description = entity.Description,
+                ExpirationDate = entity.ExpirationDate
+            };
             return View(post);
         }
 
@@ -111,8 +122,16 @@ namespace ADMS.Controllers
 
                 return RedirectToAction("Index");
             }
-                       
+
             return View(post);
+        }
+
+        
+        public ActionResult Delete(Guid id)
+        {
+            _postManager.Delete(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,9 +1,26 @@
-﻿
+﻿@model IEnumerable<ADMS.Domain.Entities.Category>
+
 <div class="form-group">
-    <div class="col-md-offset-2 col-md-3">
-        <ul class="list-group" id="SubCategories"></ul>
-    </div>
+    <label class="control-label col-md-2">Select category</label>
+
+    <div class="col-md-10">
+        <ul class="subcategory">
+
+            @foreach (var item in Model)
+            {
+                <li class="sub_categories">
+                    <span class="toggler glyphicon glyphicon-circle-arrow-down"></span>
+                    <span class="category_name">@item.CategoryName</span>
+                    <span class="row_selector glyphicon glyphicon-unchecked" id="@item.CategoryId"></span>
+                    <div class="innercategories"></div>
+                </li>
+            }
+
+        </ul>
+    </div> 
 </div>
+
+
 
 <input type="hidden" id="SelectedCategory" name="SelectedCategory" value="" />
 

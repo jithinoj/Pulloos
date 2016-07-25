@@ -6,21 +6,17 @@
 }
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
 <div class="form-horizontal materialize-textarea">
     <h4>Create new Post</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <input type="hidden" name="PostId" value="@Model.PostId" />
+    <input type="hidden" id="PostId" name="PostId" value="@Model.PostId" />
 
     <div class="form-group">
         @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", id = "Title" } })
             @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -28,12 +24,12 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            <textarea name="Description" id="Description" class ="form-control materialize-textarea"></textarea>           
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    @Html.Partial("_CategorySelector")
+    @Html.Partial("_CategorySelector", Model.Categories)
 
     <div class="form-group">
         @Html.LabelFor(model => model.ExpirationDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -45,14 +41,16 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Create" id="submit" class="btn btn-default" />
             @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn - default" })
         </div>
     </div>
     
 </div>
-}
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script src="~/Scripts/App/CreatePost.js"></script>

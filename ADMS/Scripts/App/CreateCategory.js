@@ -1,7 +1,5 @@
 ﻿
-/*
- * 
- * 
+/* 
  * If You are using the "_CategorySelector.cshtml" partial view, the selected category will be inside a hidden feild with name "SelectedCategory".
  * 
  * "_CategorySelector.cshtml" partial view requires the jquery plugin to work as expected. It has also dependency on bootstrap. 

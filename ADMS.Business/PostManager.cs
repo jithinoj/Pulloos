@@ -34,5 +34,11 @@ namespace ADMS.Business
         {
             return _unitOfWork.PostRepository.GetByID(id);
         }
+
+        public void Delete(Guid postID)
+        {
+            _unitOfWork.PostRepository.Delete(postID);
+
+        }
     }
 }

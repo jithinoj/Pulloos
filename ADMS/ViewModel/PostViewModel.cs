@@ -30,7 +30,7 @@ namespace ADMS.ViewModel
         public string UserName { get; set; }
 
 
-        public List<Category> Categories { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
 
         public List<Upload> Uploads { get; set; }
     }

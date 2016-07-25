@@ -17,3 +17,15 @@
 .category_name {
     padding-left: 2px;
 }
+.category_name:hover {
+    background-color:lightgray;
+}
+/*
+.row_selector:hover ~ .category_name{
+    background-color:lightgray;
+}
+    */
+.row_selector:hover + .category_name:first-child{
+    
+    background-color:lightgray;
+}

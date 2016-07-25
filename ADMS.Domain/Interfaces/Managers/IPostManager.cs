@@ -13,6 +13,8 @@ namespace ADMS.Domain.Interfaces.Managers
         IEnumerable<Post> GetAll();
 
         Post GetByID(Guid id);
+
+        void Delete(Guid postID);
     }
         
 }
