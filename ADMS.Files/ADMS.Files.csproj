@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B2BF8DE7-5830-4432-A2C9-703C46BDB372}</ProjectGuid>
+    <ProjectGuid>{1936FDF1-36F1-41C6-A060-3D3B49C2358E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ADMS.Domain</RootNamespace>
-    <AssemblyName>ADMS.Domain</AssemblyName>
+    <RootNamespace>ADMS.Files</RootNamespace>
+    <AssemblyName>ADMS.Files</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,9 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,25 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\AspNetRoles.cs" />
-    <Compile Include="Entities\AspNetUserClaims.cs" />
-    <Compile Include="Entities\AspNetUserLogins.cs" />
-    <Compile Include="Entities\AspNetUsers.cs" />
-    <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\CategoryMapping.cs" />
-    <Compile Include="Entities\Post.cs" />
-    <Compile Include="Entities\Upload.cs" />
-    <Compile Include="Interfaces\Files\IFileHandler.cs" />
-    <Compile Include="Interfaces\Managers\ICategoryManager.cs" />
-    <Compile Include="Interfaces\Managers\ICategoryMappingManager.cs" />
-    <Compile Include="Interfaces\Managers\IPostManager.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Interfaces\Managers\IUserManager.cs" />
+    <Compile Include="FileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\Configurations\" />
+    <ProjectReference Include="..\ADMS.Domain\ADMS.Domain.csproj">
+      <Project>{b2bf8de7-5830-4432-a2c9-703c46bdb372}</Project>
+      <Name>ADMS.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

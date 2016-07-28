@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADMS.Data", "ADMS.Data\ADMS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADMS.Business", "ADMS.Business\ADMS.Business.csproj", "{71F1FF18-8072-4F6C-ADF7-5A0D431E6A96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADMS.Files", "ADMS.Files\ADMS.Files.csproj", "{1936FDF1-36F1-41C6-A060-3D3B49C2358E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADMS.Configuration", "ADMS.Configuration\ADMS.Configuration.csproj", "{80F0E2D6-CF11-4906-91CF-6F3464406A90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{71F1FF18-8072-4F6C-ADF7-5A0D431E6A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71F1FF18-8072-4F6C-ADF7-5A0D431E6A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71F1FF18-8072-4F6C-ADF7-5A0D431E6A96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1936FDF1-36F1-41C6-A060-3D3B49C2358E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1936FDF1-36F1-41C6-A060-3D3B49C2358E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1936FDF1-36F1-41C6-A060-3D3B49C2358E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1936FDF1-36F1-41C6-A060-3D3B49C2358E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F0E2D6-CF11-4906-91CF-6F3464406A90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F0E2D6-CF11-4906-91CF-6F3464406A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F0E2D6-CF11-4906-91CF-6F3464406A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F0E2D6-CF11-4906-91CF-6F3464406A90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
