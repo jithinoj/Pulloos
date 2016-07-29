@@ -50,18 +50,18 @@
     <Compile Include="Entities\CategoryMapping.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\Upload.cs" />
+    <Compile Include="Interfaces\Configurations\IConfigurationSettings.cs" />
     <Compile Include="Interfaces\Files\IFileHandler.cs" />
     <Compile Include="Interfaces\Managers\ICategoryManager.cs" />
     <Compile Include="Interfaces\Managers\ICategoryMappingManager.cs" />
     <Compile Include="Interfaces\Managers\IPostManager.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\Managers\IUploadManager.cs" />
     <Compile Include="Interfaces\Managers\IUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\Configurations\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

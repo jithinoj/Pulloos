@@ -1,22 +1,36 @@
-﻿using ADMS.Domain.Interfaces.Files;
+﻿using ADMS.Domain.Interfaces.Configurations;
+using ADMS.Domain.Interfaces.Files;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace ADMS.Files
 {
     public class FileHandler : IFileHandler
     {
-        public byte[] GetFile(Guid fileId)
+        private string _uploadPath;
+
+        public FileHandler(IConfigurationSettings configurationSettings)
         {
-            throw new NotImplementedException();
+            _uploadPath = configurationSettings.UploadFilePath;
         }
 
-        public void SaveFile(string fileName, byte[] fileContent)
+        public byte[] GetFile(Guid fileName)
+        {          
+
+            return File.ReadAllBytes(_uploadPath + fileName);
+        }
+
+        public bool SaveFile(string fileName, byte[] fileContent)
         {
-            //Implement Here
+            try
+            {
+                File.WriteAllBytes((_uploadPath + fileName), fileContent);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

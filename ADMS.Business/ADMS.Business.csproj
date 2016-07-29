@@ -43,6 +43,7 @@
     <Compile Include="CategoryMappingManager.cs" />
     <Compile Include="PostManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UploadManager.cs" />
     <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
