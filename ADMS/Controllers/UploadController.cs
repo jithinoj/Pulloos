@@ -43,7 +43,7 @@ namespace ADMS.Controllers
                 foreach (var fileBase in uploadViewModel.Files)
                 {
                     var fileId = Guid.NewGuid();
-                    var fileName = GetFileNameFromPostedFile(fileId, fileBase.FileName);
+                    var fileName =  GetFileNameFromPostedFile(fileId, fileBase.FileName);
 
                     bool isSuccessful = StoreFile(fileBase, fileName);
 

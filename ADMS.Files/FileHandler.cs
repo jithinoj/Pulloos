@@ -1,6 +1,7 @@
 ﻿using ADMS.Domain.Interfaces.Configurations;
 using ADMS.Domain.Interfaces.Files;
 using System;
+using System.Configuration;
 using System.IO;
 
 namespace ADMS.Files
@@ -11,8 +12,10 @@ namespace ADMS.Files
 
         public FileHandler(IConfigurationSettings configurationSettings)
         {
-            _uploadPath = configurationSettings.UploadFilePath;
+            _uploadPath = configurationSettings.UploadFilePath;            
         }
+
+        
 
         public byte[] GetFile(Guid fileName)
         {          
