@@ -26,24 +26,20 @@ namespace ADMS.Controllers
         public ActionResult Index()
         {
 
-            var results = _postManager.GetAll()
-                                      .OrderByDescending(x=>x.PostedAt);
-
-            List<PostViewModel> posts = new List<PostViewModel>();
-
-            foreach (var item in results)
-            {
-                posts.Add(new PostViewModel
-                {
-                    PostId = item.PostId,
-                    Title = item.Title,
-                    Description = item.Description,
-                    ExpirationDate = item.ExpirationDate,
-                    PostedAt = item.PostedAt,
-                    PostedBy = item.PostedBy,
-                    UserName = item.AspNetUsers.FirstName + " " + item.AspNetUsers.LastName
-                });
-            }
+            var posts = _postManager.GetAll()
+                                      .OrderByDescending(x => x.PostedAt)
+                                      .Select(item => new PostViewModel
+                                      {
+                                          PostId = item.PostId,
+                                          Title = item.Title,
+                                          Description = item.Description,
+                                          ExpirationDate = item.ExpirationDate,
+                                          PostedAt = item.PostedAt,
+                                          PostedBy = item.PostedBy,
+                                          UserName = item.AspNetUsers.FirstName + " " + item.AspNetUsers.LastName,
+                                          Uploads = item.Upload.ToList()
+                                      });                                     
+            
 
             PostListViewModel postListmodel = new PostListViewModel();
             postListmodel.CurrentUser = Guid.Parse(GetUserFromUserName(User.Identity.Name).Id);

@@ -371,12 +371,15 @@
     <Content Include="Views\Posts\Create.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
-    <Content Include="unity.config" />
+    <Content Include="unity.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_CategorySelector.cshtml" />
     <Content Include="Views\Upload\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

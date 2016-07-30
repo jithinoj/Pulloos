@@ -6,7 +6,6 @@ namespace ADMS.Domain.Entities
 
     public partial class AspNetUsers
     {
-        
         public AspNetUsers()
         {
             AspNetUserClaims = new HashSet<AspNetUserClaims>();
@@ -16,12 +15,6 @@ namespace ADMS.Domain.Entities
         }
 
         public string Id { get; set; }
-
-        [StringLength(256)]
-        public string FirstName { get; set; }
-
-        [StringLength(256)]
-        public string LastName { get; set; }
 
         [StringLength(256)]
         public string Email { get; set; }
@@ -48,16 +41,16 @@ namespace ADMS.Domain.Entities
         [StringLength(256)]
         public string UserName { get; set; }
 
-        
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
 
-        
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
 
-        
         public virtual ICollection<Post> Post { get; set; }
 
-        
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
     }
 }

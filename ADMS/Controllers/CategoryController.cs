@@ -2,6 +2,7 @@
 using ADMS.Domain.Interfaces.Managers;
 using ADMS.ViewModel;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ADMS.Controllers
@@ -66,7 +67,13 @@ namespace ADMS.Controllers
         public JsonResult GetSubcategories(Guid category)
         {
             var categories = new JsonResult();
-            categories.Data = _categoryManager.GetAllSubCategories(category);
+            
+            categories.Data = _categoryManager.GetAllSubCategories(category)
+                                                .Select(x => new CategoryViewModel
+                                                                            {
+                                                                                CategoryId = x.CategoryId,
+                                                                                CategoryName =x.CategoryName
+                                                                            });
             return categories;
         }
 

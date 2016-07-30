@@ -4,12 +4,10 @@ namespace ADMS.Domain.Entities
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Web.Script.Serialization;
 
     [Table("Category")]
     public partial class Category
     {
-        
         public Category()
         {
             CategoryMapping = new HashSet<CategoryMapping>();
@@ -22,10 +20,8 @@ namespace ADMS.Domain.Entities
         [StringLength(500)]
         public string CategoryName { get; set; }
 
-        [ScriptIgnore]
         public virtual ICollection<CategoryMapping> CategoryMapping { get; set; }
 
-        
         public virtual ICollection<Post> Post { get; set; }
     }
 }

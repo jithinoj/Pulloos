@@ -17,7 +17,13 @@
                     <div class="card">
                         <div class="card-content">
                             <div class="card-title"> @post.Title</div>
-                            <div class="teal-text"> @post.Description</div>
+                            <div class="teal-text card-content"> @post.Description</div>
+
+                            @foreach (var item in @post.Uploads)
+                            {
+                                <img class="img-thumbnail" width="100" height="100" src="~/Uploads/@item.ThumbPath" alt="Alternate Text" />
+                            }
+
                             <div class="right-align">
                                 <div> Posted on : @post.PostedAt</div>
                                 <div> Posted by : @post.UserName</div>

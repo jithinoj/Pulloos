@@ -15,6 +15,8 @@ namespace ADMS.Domain.Entities
         [StringLength(500)]
         public string FileName { get; set; }
 
+        public string ThumbPath { get; set; }
+
         [StringLength(500)]
         public string FilePath { get; set; }
 

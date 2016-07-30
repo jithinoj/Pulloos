@@ -52,14 +52,19 @@ namespace ADMS.Controllers
                                                         {
                                                             FileName = fileName.ToString(),
                                                             UploadId = fileId,
+                                                            ThumbPath = fileId.ToString() + "-thumb.jpg",
                                                             PostId = uploadViewModel.PostId
                                                         });
                 }
 
+                return RedirectToAction("Index", "Posts");
             }
 
             return View(uploadViewModel);
         }
+
+
+        #region Private
 
         private bool StoreFile(HttpPostedFileBase fileBase, string fileName)
         {
@@ -71,6 +76,7 @@ namespace ADMS.Controllers
             return  _fileHandler.SaveFile(fileName, fileArray);
         }
 
+
         private string GetFileNameFromPostedFile(Guid fileId, string fileName)
         {
             int startIndex = fileName.LastIndexOf(".");
@@ -81,5 +87,8 @@ namespace ADMS.Controllers
 
             return fileId.ToString() + extension;
         }
+
+        #endregion
+
     }
 }

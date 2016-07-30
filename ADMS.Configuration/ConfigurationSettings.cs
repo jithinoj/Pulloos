@@ -4,34 +4,26 @@ using System;
 
 namespace ADMS.Configuration
 {
-    public class ConfigurationSettings: IConfigurationSettings
+    public class ConfigurationSettings : IConfigurationSettings
     {
         
-         
         public ConfigurationSettings()
         {
-           
+
         }
 
-        //public ConfigurationSettings Settings
-        //{
-        //    get { return _settings; }
-        //    private set { _settings = value; }
-        //}
+        private string _uploadFilePath;
 
-
-        
-
-        
         public string UploadFilePath
         {
             get
             {
-                return ConfigurationManager.AppSettings["UploadFilePath"].ToString();
-            }
-            
-        }
+                if (_uploadFilePath == null)
+                    _uploadFilePath = ConfigurationManager.AppSettings["UploadFilePath"].ToString();
 
-        
+                return _uploadFilePath;
+            }
+
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace ADMS.Business
 
         public IEnumerable<Post> GetAll()
         {
-            return _unitOfWork.PostRepository.Get(includeProperties: "AspNetUsers");
+            return _unitOfWork.PostRepository.Get(includeProperties: "AspNetUsers,Upload");
         }
 
         public Post GetByID(Guid id)

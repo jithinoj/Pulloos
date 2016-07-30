@@ -4,11 +4,10 @@ namespace ADMS.Domain.Entities
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
+    using System.Web.Script.Serialization;
     [Table("Post")]
     public partial class Post
     {
-        
         public Post()
         {
             Upload = new HashSet<Upload>();
@@ -35,9 +34,9 @@ namespace ADMS.Domain.Entities
 
         public virtual AspNetUsers AspNetUsers { get; set; }
 
+        
         public virtual Category Category { get; set; }
 
-        
         public virtual ICollection<Upload> Upload { get; set; }
     }
 }

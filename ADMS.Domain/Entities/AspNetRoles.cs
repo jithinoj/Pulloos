@@ -5,7 +5,6 @@ namespace ADMS.Domain.Entities
 
     public partial class AspNetRoles
     {
-        
         public AspNetRoles()
         {
             AspNetUsers = new HashSet<AspNetUsers>();
@@ -16,7 +15,7 @@ namespace ADMS.Domain.Entities
         [Required]
         [StringLength(256)]
         public string Name { get; set; }
-        
+
         public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

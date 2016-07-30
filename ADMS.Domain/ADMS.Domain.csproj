@@ -52,6 +52,7 @@
     <Compile Include="Entities\Upload.cs" />
     <Compile Include="Interfaces\Configurations\IConfigurationSettings.cs" />
     <Compile Include="Interfaces\Files\IFileHandler.cs" />
+    <Compile Include="Interfaces\Files\IThumbnailGenerator.cs" />
     <Compile Include="Interfaces\Managers\ICategoryManager.cs" />
     <Compile Include="Interfaces\Managers\ICategoryMappingManager.cs" />
     <Compile Include="Interfaces\Managers\IPostManager.cs" />
