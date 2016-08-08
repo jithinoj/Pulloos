@@ -11,12 +11,13 @@ namespace ADMS.Controllers
 {
     public class UploadController : BaseController
     {
-        private IFileHandler _fileHandler;
+        
         private IUploadManager _uploadManager;
+        private IFileHandlerFactory _fileHandlerFactory;
 
-        public UploadController(IFileHandler fileHandler, IUploadManager uploadManager)
+        public UploadController(IFileHandlerFactory fileHandlerFactory, IUploadManager uploadManager)
         {
-            _fileHandler = fileHandler;
+            _fileHandlerFactory = fileHandlerFactory;
             _uploadManager = uploadManager;
         }
 
@@ -70,10 +71,12 @@ namespace ADMS.Controllers
         {
             MemoryStream fileStream = new MemoryStream();
 
+            IFileHandler imageHandler = _fileHandlerFactory.GetFileHandler(Enumerations.FileType.Image);
+
             fileBase.InputStream.CopyTo(fileStream);
             byte[] fileArray = fileStream.ToArray(); 
 
-            return  _fileHandler.SaveFile(fileName, fileArray);
+            return imageHandler.SaveFile(fileName, fileArray);
         }
 
 

@@ -48,10 +48,12 @@
     <Compile Include="Entities\AspNetUsers.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\CategoryMapping.cs" />
+    <Compile Include="Entities\Enumerations.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\Upload.cs" />
     <Compile Include="Interfaces\Configurations\IConfigurationSettings.cs" />
     <Compile Include="Interfaces\Files\IFileHandler.cs" />
+    <Compile Include="Interfaces\Files\IFileHandlerFactory.cs" />
     <Compile Include="Interfaces\Files\IThumbnailGenerator.cs" />
     <Compile Include="Interfaces\Managers\ICategoryManager.cs" />
     <Compile Include="Interfaces\Managers\ICategoryMappingManager.cs" />
